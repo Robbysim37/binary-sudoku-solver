@@ -1,0 +1,7 @@
+.container {
+    display: flex;
+    flex-direction: row;
+    width: 45vh;
+    height: 45vh;
+    margin-top: 5%;
+}
