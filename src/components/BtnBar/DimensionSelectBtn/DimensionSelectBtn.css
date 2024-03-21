@@ -1,0 +1,11 @@
+.dimension-btn{
+    border: 1px solid black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 10vw;
+    width: 10vw;
+    margin: 3%;
+    background-color: #4d4a43; 
+    color: white;
+}

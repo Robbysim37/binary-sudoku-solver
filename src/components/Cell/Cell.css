@@ -1,0 +1,7 @@
+.cell{
+    border: 1px solid black;
+    flex-grow: 1;
+    margin: 3%;
+    background-color: #242320;
+    border-radius: 5px;
+}
