@@ -3,7 +3,12 @@
   height: 100vh;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
   background-color: #141412;
+}
+
+.headerText{
+  font-family: "Pixelify Sans", sans-serif;
+  color: white
 }
