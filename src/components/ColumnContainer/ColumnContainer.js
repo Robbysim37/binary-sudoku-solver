@@ -3,18 +3,24 @@ import "./ColumnContainer.css"
 import CellColumn from '../CellColumn/CellColumn'
 import { useState } from 'react'
 import { createPuzzle } from '../../puzzleLogic/puzzleCreation'
-import { FOURxFOUR, TWELVExTWELVE } from '../../puzzleLogic/globalStrings'
+import { FOURxFOUR } from '../../puzzleLogic/globalStrings'
 
 export default function ColumnContainer() {
 
+  //?????????
+
   const [puzzleState,setPuzzleState] = useState(createPuzzle(FOURxFOUR))
 
-  console.log(puzzleState)
+  const updatePuzzle = (x,y,color) => {
+    puzzleState[x][y].color = color
+    setPuzzleState(puzzleState)
+    console.log(puzzleState[x][y])
+  }
 
   return (
     <div className='container'>
-      {puzzleState.map(currentColumn => {
-        return <CellColumn key={Math.random()} cells={currentColumn}/>
+      {puzzleState.map((currentColumn,i) => {
+        return <CellColumn updatePuzzle={updatePuzzle} x={i} key={Math.random()} cells={currentColumn}/>
       })}
     </div>
   )

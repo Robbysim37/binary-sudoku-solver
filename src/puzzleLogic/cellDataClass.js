@@ -1,4 +1,4 @@
-import { BLANK } from "./globalStrings";
+import { BLANK, YELLOW, BLUE } from "./globalStrings";
 
 export class CellData {
 
@@ -9,27 +9,35 @@ export class CellData {
     #west
 
     get color() {
-        return this.color
+        return this.#color
     }
 
-    set color(newColor){
-        this.color = newColor
+    set color(currColor){
+        if(currColor === BLANK){
+            this.#color = YELLOW
+        }
+        if(currColor === YELLOW){
+            this.#color = BLUE
+        }
+        if(currColor === BLUE){
+            this.#color = BLANK
+        }
     }
 
     get north(){
-        return this.north
+        return this.#north
     }
 
     get south(){
-        return this.south
+        return this.#south
     }
 
     get east(){
-        return this.east
+        return this.#east
     }
 
     get west(){
-        return this.west
+        return this.#west
     }
 
     setNeighbors(neighborsObj){
