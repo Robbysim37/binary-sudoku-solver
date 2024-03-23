@@ -1,5 +1,6 @@
-.solveButton{
-    height: 20%;
-    width: 30%;
+.solveBtn{
+    height: 5vh;
+    width: 30vw;
+    font-size: larger;
+    font-family: "Pixelify Sans", sans-serif;
 }
-/* this doesnt do anything, fix it by using the div */

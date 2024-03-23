@@ -6,7 +6,7 @@ export default function CellColumn(props) {
   return (
     <div className='column'>
       {props.cells.map(currentCell => {
-        return <Cell/>
+        return <Cell cellDatakey={Math.random()}/>
       })}
     </div>
   )
