@@ -39,6 +39,8 @@ const checkDirectionalNeighbor = (directionOne,directionTwo,cell) => {
     }
 }
 
+//check all neighbors for doubles or in-betweens
+
 const firstRule = (puzzle) => {
     puzzle.forEach(column => {
         column.forEach(cell => {
