@@ -2,7 +2,7 @@ import { BLANK, BLUE, YELLOW, NORTH, SOUTH, EAST, WEST } from "./globalStrings"
 
 
 export const solvePuzzle = (puzzle) => {
-    return checkAllNeighbors(puzzle) 
+    return firstRule(puzzle) 
 }
 
 
@@ -39,7 +39,7 @@ const checkDirectionalNeighbor = (directionOne,directionTwo,cell) => {
     }
 }
 
-const checkAllNeighbors = (puzzle) => {
+const firstRule = (puzzle) => {
     puzzle.forEach(column => {
         column.forEach(cell => {
             if(cell.color === BLANK){
