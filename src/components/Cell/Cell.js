@@ -3,7 +3,7 @@ import "./Cell.css"
 
 export default function Cell(props) {
 
-  const {x,y,color} = props
+  let {x,y,color} = props
 
   const cellClickHandler = (e) => {
     props.updatePuzzle(x,y,color)
