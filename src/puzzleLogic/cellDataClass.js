@@ -13,6 +13,10 @@ export class CellData {
     }
 
     set color(currColor){
+        this.#color = currColor
+    }
+
+    nextColor(currColor){
         if(currColor === BLANK){
             this.#color = YELLOW
         }
