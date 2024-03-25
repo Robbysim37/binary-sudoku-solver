@@ -8,7 +8,7 @@ export default function SolveBtn(props) {
 
   const solveClickHandler = (e) => {
     const solvedPuzzle = solvePuzzle(puzzleState)
-    // setPuzzleState([...solvedPuzzle])
+    setPuzzleState([...solvedPuzzle])
   }
 
   return (

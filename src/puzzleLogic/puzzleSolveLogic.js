@@ -2,9 +2,9 @@ import { BLANK, BLUE, YELLOW, NORTH, SOUTH, EAST, WEST } from "./globalStrings"
 
 
 export const solvePuzzle = (puzzle) => {
-    // firstRule(puzzle)
-    // return secondRule(puzzle)
-    fullAndTwoBlankCollections(puzzle)
+    firstRule(puzzle)
+    secondRule(puzzle)
+    return thirdRule(puzzle)
 }
 
 
@@ -62,10 +62,23 @@ const fullAndTwoBlankCollections = (puzzle) => {
 
 const compareCollections = (collections) => {
     const {fullCollections,twoBlankCollections} = collections
-    twoBlankCollections.forEach(currCollection => {
-        currCollection.forEach((cell,i) => {
-            
-        })
+    twoBlankCollections.forEach(currPartialCollection => {
+        const matchingArr = fullCollections.filter(currFullCollection => {
+            let mismatches = 0
+            currFullCollection.forEach((cell,i) => {
+                if(cell.color !== currPartialCollection[i].color){
+                    mismatches++
+                }
+            })
+            return mismatches === 2 ? true : false
+        })[0]
+        if(matchingArr){
+            currPartialCollection.forEach((cell,i) => {
+                if(cell.color === BLANK){
+                    cell.color = oppositeColor(matchingArr[i].color)
+                }
+            })
+        }
     })
 }
 
@@ -146,4 +159,7 @@ const secondRule = (puzzle) => {
 
 const thirdRule = (puzzle) => {
     const {columns,rows} = rowsAndColumns(puzzle)
+    compareCollections(fullAndTwoBlankCollections(columns))
+    compareCollections(fullAndTwoBlankCollections(rows))
+    return puzzle
 }
