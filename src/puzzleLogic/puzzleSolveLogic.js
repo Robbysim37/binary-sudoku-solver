@@ -2,8 +2,9 @@ import { BLANK, BLUE, YELLOW, NORTH, SOUTH, EAST, WEST } from "./globalStrings"
 
 
 export const solvePuzzle = (puzzle) => {
-    firstRule(puzzle)
-    return secondRule(puzzle)
+    // firstRule(puzzle)
+    // return secondRule(puzzle)
+    fullAndTwoBlankCollections(puzzle)
 }
 
 
@@ -34,6 +35,38 @@ const rowsAndColumns = (puzzle) => {
     })
     console.log({columns,rows})
     return {columns,rows}
+}
+
+const fullAndTwoBlankCollections = (puzzle) => {
+    const fullCollections = []
+    const twoBlankCollections = []
+
+    puzzle.forEach(currCollection => {
+        let containsBlank = false
+        let numberOfBlanks = 0
+        currCollection.forEach(cell => {
+            if(cell.color === BLANK){
+                containsBlank = true
+                numberOfBlanks++
+            }
+        })
+        if(!containsBlank){
+            fullCollections.push(currCollection)
+        }
+        if(numberOfBlanks === 2){
+            twoBlankCollections.push(currCollection)
+        }
+    })
+    return {fullCollections,twoBlankCollections}
+}
+
+const compareCollections = (collections) => {
+    const {fullCollections,twoBlankCollections} = collections
+    twoBlankCollections.forEach(currCollection => {
+        currCollection.forEach((cell,i) => {
+            
+        })
+    })
 }
 
 const checkDirectionalNeighbor = (directionOne,directionTwo,cell) => {
@@ -109,4 +142,8 @@ const secondRule = (puzzle) => {
     checkMaxColors(columns)
     checkMaxColors(rows)
     return puzzle
+}
+
+const thirdRule = (puzzle) => {
+    const {columns,rows} = rowsAndColumns(puzzle)
 }
