@@ -2,7 +2,8 @@ import { BLANK, BLUE, YELLOW, NORTH, SOUTH, EAST, WEST } from "./globalStrings"
 
 
 export const solvePuzzle = (puzzle) => {
-    return firstRule(puzzle) 
+    firstRule(puzzle)
+    return secondRule(puzzle)
 }
 
 
@@ -12,6 +13,27 @@ const oppositeColor = (color) => {
     }else if(color === YELLOW){
         return BLUE
     }
+}
+
+const rowsAndColumns = (puzzle) => {
+    const columns = []
+    const rows = []
+    let row = []
+    puzzle.forEach(columnArr => {
+        columns.push(columnArr)
+    })
+    puzzle[0].forEach(cell => {
+        let currCell = cell
+        row.push(currCell)
+        while(currCell.east){
+            row.push(currCell.east)
+            currCell = currCell.east
+        }
+        rows.push(row)
+        row = []
+    })
+    console.log({columns,rows})
+    return {columns,rows}
 }
 
 const checkDirectionalNeighbor = (directionOne,directionTwo,cell) => {
@@ -39,6 +61,35 @@ const checkDirectionalNeighbor = (directionOne,directionTwo,cell) => {
     }
 }
 
+const checkMaxColors = (puzzle) => {
+    puzzle.forEach(currColumn => {
+        let blue = 0
+        let yellow = 0
+        currColumn.forEach(cell => {
+            if(cell.color === BLUE){
+                blue++
+            }
+            if(cell.color === YELLOW){
+                yellow++
+            }
+        })
+        if(blue === currColumn.length / 2){
+            currColumn.forEach(cell => {
+                if(cell.color === BLANK){
+                    cell.color = YELLOW
+                }
+            })
+        }
+        if(yellow === currColumn.length / 2){
+            currColumn.forEach(cell => {
+                if(cell.color === BLANK){
+                    cell.color = BLUE
+                }
+            })
+        }
+    })
+}
+
 //check all neighbors for doubles or in-betweens
 
 const firstRule = (puzzle) => {
@@ -50,5 +101,12 @@ const firstRule = (puzzle) => {
             }
         })
     })
+    return puzzle
+}
+
+const secondRule = (puzzle) => {
+    const {columns,rows} = rowsAndColumns(puzzle)
+    checkMaxColors(columns)
+    checkMaxColors(rows)
     return puzzle
 }
