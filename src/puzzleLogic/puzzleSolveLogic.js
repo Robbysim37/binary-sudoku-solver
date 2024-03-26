@@ -3,7 +3,8 @@ import { BLANK, BLUE, YELLOW, NORTH, SOUTH, EAST, WEST } from "./globalStrings"
 
 export const solvePuzzle = (puzzle) => {
     firstRule(puzzle)
-    return secondRule(puzzle)
+    secondRule(puzzle)
+    return thirdRule(puzzle)
 }
 
 
@@ -34,6 +35,51 @@ const rowsAndColumns = (puzzle) => {
     })
     console.log({columns,rows})
     return {columns,rows}
+}
+
+const fullAndTwoBlankCollections = (puzzle) => {
+    const fullCollections = []
+    const twoBlankCollections = []
+
+    puzzle.forEach(currCollection => {
+        let containsBlank = false
+        let numberOfBlanks = 0
+        currCollection.forEach(cell => {
+            if(cell.color === BLANK){
+                containsBlank = true
+                numberOfBlanks++
+            }
+        })
+        if(!containsBlank){
+            fullCollections.push(currCollection)
+        }
+        if(numberOfBlanks === 2){
+            twoBlankCollections.push(currCollection)
+        }
+    })
+    return {fullCollections,twoBlankCollections}
+}
+
+const compareCollections = (collections) => {
+    const {fullCollections,twoBlankCollections} = collections
+    twoBlankCollections.forEach(currPartialCollection => {
+        const matchingArr = fullCollections.filter(currFullCollection => {
+            let mismatches = 0
+            currFullCollection.forEach((cell,i) => {
+                if(cell.color !== currPartialCollection[i].color){
+                    mismatches++
+                }
+            })
+            return mismatches === 2 ? true : false
+        })[0]
+        if(matchingArr){
+            currPartialCollection.forEach((cell,i) => {
+                if(cell.color === BLANK){
+                    cell.color = oppositeColor(matchingArr[i].color)
+                }
+            })
+        }
+    })
 }
 
 const checkDirectionalNeighbor = (directionOne,directionTwo,cell) => {
@@ -108,5 +154,12 @@ const secondRule = (puzzle) => {
     const {columns,rows} = rowsAndColumns(puzzle)
     checkMaxColors(columns)
     checkMaxColors(rows)
+    return puzzle
+}
+
+const thirdRule = (puzzle) => {
+    const {columns,rows} = rowsAndColumns(puzzle)
+    compareCollections(fullAndTwoBlankCollections(columns))
+    compareCollections(fullAndTwoBlankCollections(rows))
     return puzzle
 }
