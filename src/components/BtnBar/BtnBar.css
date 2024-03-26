@@ -9,3 +9,12 @@
     justify-content: center;
     width: 100%;
 }
+
+@media (min-width:800px){
+    .btnContainer{
+        width: 50vw;
+    }
+    .dimensionBtnContainer{
+        width: 40%;
+    }
+}
