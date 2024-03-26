@@ -30,7 +30,7 @@ function App() {
       <ColumnContainer puzzleDimensions={puzzleDimensions}
       updatePuzzlecontent={updatePuzzlecontent}
       puzzleState={puzzleState}/>
-      <SolveBtn puzzleState={puzzleState} setPuzzleState={setPuzzleState}/>
+      <SolveBtn puzzleDimensions={puzzleDimensions} puzzleState={puzzleState} setPuzzleState={setPuzzleState}/>
       <BtnBar updateDimensions={updateDimensions}/>
     </div>
   );

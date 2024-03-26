@@ -4,3 +4,9 @@
     font-size: larger;
     font-family: "Pixelify Sans", sans-serif;
 }
+
+@media (min-width:800px){
+    .solveBtn{
+        width: 15vw;
+    }
+}

@@ -4,7 +4,11 @@ import { BLANK, BLUE, YELLOW, NORTH, SOUTH, EAST, WEST } from "./globalStrings"
 export const solvePuzzle = (puzzle) => {
     firstRule(puzzle)
     secondRule(puzzle)
-    return thirdRule(puzzle)
+    thirdRule(puzzle)
+    if(puzzleIncomplete(puzzle)){
+        return solvePuzzle(puzzle)
+    }
+    return puzzle
 }
 
 
@@ -14,6 +18,18 @@ const oppositeColor = (color) => {
     }else if(color === YELLOW){
         return BLUE
     }
+}
+
+const puzzleIncomplete = (puzzle) => {
+    let puzzleIncomplete = false
+    puzzle.forEach(column => {
+        column.forEach(cell => {
+            if(cell.color === BLANK){
+                puzzleIncomplete = true
+            }
+        })
+    })
+    return puzzleIncomplete
 }
 
 const rowsAndColumns = (puzzle) => {
@@ -33,7 +49,6 @@ const rowsAndColumns = (puzzle) => {
         rows.push(row)
         row = []
     })
-    console.log({columns,rows})
     return {columns,rows}
 }
 
@@ -147,19 +162,16 @@ const firstRule = (puzzle) => {
             }
         })
     })
-    return puzzle
 }
 
 const secondRule = (puzzle) => {
     const {columns,rows} = rowsAndColumns(puzzle)
     checkMaxColors(columns)
     checkMaxColors(rows)
-    return puzzle
 }
 
 const thirdRule = (puzzle) => {
     const {columns,rows} = rowsAndColumns(puzzle)
     compareCollections(fullAndTwoBlankCollections(columns))
     compareCollections(fullAndTwoBlankCollections(rows))
-    return puzzle
 }
