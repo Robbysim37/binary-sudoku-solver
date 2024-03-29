@@ -10,6 +10,7 @@ function App() {
 
   const [puzzleDimensions,setPuzzleDimensions] = useState(FOURxFOUR)
   const [puzzleState,setPuzzleState] = useState(createPuzzle(puzzleDimensions))
+  const [isPuzzleSolved, setIsPuzzleSolved] = useState(false)
 
   useEffect(() => {
     setPuzzleState(createPuzzle(puzzleDimensions))
@@ -29,8 +30,13 @@ function App() {
       <h1 className='headerText'>Binary Sudoku Solver</h1>
       <ColumnContainer puzzleDimensions={puzzleDimensions}
       updatePuzzlecontent={updatePuzzlecontent}
-      puzzleState={puzzleState}/>
-      <SolveBtn puzzleDimensions={puzzleDimensions} puzzleState={puzzleState} setPuzzleState={setPuzzleState}/>
+      puzzleState={puzzleState}
+      isPuzzleSolved={isPuzzleSolved}/>
+      <SolveBtn puzzleDimensions={puzzleDimensions} 
+      puzzleState={puzzleState} 
+      setPuzzleState={setPuzzleState}
+      isPuzzleSolved={isPuzzleSolved}
+      setIsPuzzleSolved={setIsPuzzleSolved}/>
       <BtnBar updateDimensions={updateDimensions}/>
     </div>
   );
