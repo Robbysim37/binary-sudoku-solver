@@ -3,7 +3,7 @@ import "./Cell.css"
 
 export default function Cell(props) {
 
-  let {x,y,color} = props
+  let {x,y,color,isPuzzleSolved} = props
 
   const cellClickHandler = (e) => {
     props.updatePuzzle(x,y,color)
@@ -11,6 +11,9 @@ export default function Cell(props) {
 
     
   return (
-    <div className={`cell ${color}`} onClick={cellClickHandler}></div>
+    <>
+    {!isPuzzleSolved && <div className={`cell ${color}`} onClick={cellClickHandler}></div>}
+    {isPuzzleSolved && <div className={`cell ${color}`}></div>}
+    </>
   )
 }
