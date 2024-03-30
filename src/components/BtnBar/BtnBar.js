@@ -6,15 +6,15 @@ import { EIGHTxEIGHT, FOURxFOUR, SIXxSIX, TENxTEN, TWELVExTWELVE } from '../../p
 
 export default function BtnBar(props) {
 
-  const {updateDimensions} = props
+  const {updateDimensions,setIsPuzzleSolved} = props
 
   return (
     <div className='dimensionBtnContainer'>
-      <DimensionSelectBtn updateDimensions={updateDimensions}>{FOURxFOUR}</DimensionSelectBtn>
-      <DimensionSelectBtn updateDimensions={updateDimensions}>{SIXxSIX}</DimensionSelectBtn>
-      <DimensionSelectBtn updateDimensions={updateDimensions}>{EIGHTxEIGHT}</DimensionSelectBtn>
-      <DimensionSelectBtn updateDimensions={updateDimensions}>{TENxTEN}</DimensionSelectBtn>
-      <DimensionSelectBtn updateDimensions={updateDimensions}>{TWELVExTWELVE}</DimensionSelectBtn>
+      <DimensionSelectBtn setIsPuzzleSolved={setIsPuzzleSolved} updateDimensions={updateDimensions}>{FOURxFOUR}</DimensionSelectBtn>
+      <DimensionSelectBtn setIsPuzzleSolved={setIsPuzzleSolved} updateDimensions={updateDimensions}>{SIXxSIX}</DimensionSelectBtn>
+      <DimensionSelectBtn setIsPuzzleSolved={setIsPuzzleSolved} updateDimensions={updateDimensions}>{EIGHTxEIGHT}</DimensionSelectBtn>
+      <DimensionSelectBtn setIsPuzzleSolved={setIsPuzzleSolved} updateDimensions={updateDimensions}>{TENxTEN}</DimensionSelectBtn>
+      <DimensionSelectBtn setIsPuzzleSolved={setIsPuzzleSolved} updateDimensions={updateDimensions}>{TWELVExTWELVE}</DimensionSelectBtn>
     </div>
   )
 }

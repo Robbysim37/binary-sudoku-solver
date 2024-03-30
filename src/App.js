@@ -23,6 +23,7 @@ function App() {
 
   const updateDimensions = (dimensions) => {
     setPuzzleDimensions(dimensions)
+    setPuzzleState(createPuzzle(dimensions))
   }
 
   return (
@@ -37,7 +38,7 @@ function App() {
       setPuzzleState={setPuzzleState}
       isPuzzleSolved={isPuzzleSolved}
       setIsPuzzleSolved={setIsPuzzleSolved}/>
-      <BtnBar updateDimensions={updateDimensions}/>
+      <BtnBar updateDimensions={updateDimensions} setIsPuzzleSolved={setIsPuzzleSolved}/>
     </div>
   );
 }
